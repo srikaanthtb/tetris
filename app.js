@@ -78,4 +78,17 @@ function freeze(){
   }
 }
 
+function moveLeft(){
+    undraw()
+    const LeftEdge = current.some(index => (currentPosition + index) % width === 0)
+
+    if(!LeftEdge) currentPosition -=1
+
+    if(current.some(index => squares[currentPosition + index].classList.contains('taken'))){
+        currentPosition +=1
+    }
+}
+draw()
+
 })
+
