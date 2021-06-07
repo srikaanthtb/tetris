@@ -234,6 +234,7 @@ function gameOver() {
     if(current.some(index => squares[currentPosition+ index].classList.contains('taken'))){
         PointsDisplay.innerHTML = 'end'
         clearInterval(timerId)
+        document.removeEventListener("keyup",control)
     }
 }
 
