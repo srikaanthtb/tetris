@@ -121,6 +121,7 @@ function moveLeft(){
         currentPosition +=1
     }
     draw()
+    freeze()
 }
 
 
@@ -134,6 +135,7 @@ function moveRight(){
         currentPosition -=1
     }
     draw()
+    freeze()
 }
 
   ///FIX ROTATION OF TETROMINOS A THE EDGE 
