@@ -48,3 +48,24 @@
   height: 20px;
   width: 20px;
 }
+
+.hold-section {
+  margin-right: 50px;
+}
+
+#hold-text {
+  margin-top: 0%;
+}
+
+.hold-grid {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: yellow;
+}
+
+.hold-grid div {
+  height: 20px;
+  width: 20px;
+}
