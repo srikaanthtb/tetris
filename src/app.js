@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ScoreDisplay = document.querySelector('#score')
     const LinesDisplay = document.querySelector('#lines')
     const StartBtn = document.querySelector('#start-button')
+    const NewBtn = document.querySelector('#new-game')
     const width = 10
     let nextRandom = 0
     let lines = 0
@@ -210,6 +211,22 @@ StartBtn.addEventListener('click', () => {
         displayShape()
     }
 } )
+// to complete
+NewBtn.addEventListener('click', () => {
+   if( squares.classList.contains('taken')){
+    squares.classList.remove('taken')
+    squares[currentPosition + index].classList.remove('tetromino')
+   }
+    score = 0
+    lines = 0
+    ScoreDisplay.innerHTML = score
+    LinesDisplay.innerHTML = lines
+        draw()
+        timerId = setInterval(moveDown, 1000)
+        nextRandom = Math.floor(Math.random()*theTetrominoes.length)
+        displayShape()
+    }
+ )
 
 function addScore(){
     for (let i = 0; i < 199; i +=width){
