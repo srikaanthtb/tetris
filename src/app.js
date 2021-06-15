@@ -211,24 +211,6 @@ StartBtn.addEventListener('click', () => {
         displayShape()
     }
 } )
-// to complete
-NewBtn.addEventListener('click', () => {
-    squares.forEach(
-        square => 
-        square.classList.remove('taken');
-        square.classList.remove('tetromino');
-        square.style.backgroundColor = '';
-     )
-    score = 0
-    lines = 0
-    ScoreDisplay.innerHTML = score
-    LinesDisplay.innerHTML = lines
-        draw()
-        timerId = setInterval(moveDown, 1000)
-        nextRandom = Math.floor(Math.random()*theTetrominoes.length)
-        displayShape()
-    }
- )
 
 function addScore(){
     for (let i = 0; i < 199; i +=width){
