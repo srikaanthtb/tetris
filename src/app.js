@@ -213,10 +213,12 @@ StartBtn.addEventListener('click', () => {
 } )
 // to complete
 NewBtn.addEventListener('click', () => {
-   if( squares.classList.contains('taken')){
-    squares.classList.remove('taken')
-    squares[currentPosition + index].classList.remove('tetromino')
-   }
+    squares.forEach(
+        square => 
+        square.classList.remove('taken');
+        square.classList.remove('tetromino');
+        square.style.backgroundColor = '';
+     )
     score = 0
     lines = 0
     ScoreDisplay.innerHTML = score
