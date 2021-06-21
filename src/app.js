@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const ScoreDisplay = document.querySelector('#score')
     const LinesDisplay = document.querySelector('#lines')
     const StartBtn = document.querySelector('#start-button')
-    const NewBtn = document.querySelector('#new-game')
     const width = 10
     let nextRandom = 0
     let lines = 0
