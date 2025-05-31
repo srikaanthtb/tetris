@@ -105,19 +105,12 @@ function isAtBottom() {
 }
 
 function moveToBottom() {
-    let moved = true
-    while (moved) {
+    while (!isAtBottom()) {
         undraw()
-        if (!isAtBottom()) {
-            currentPosition += width
-            draw()
-        } else {
-            draw()
-            moved = false
-            freeze()
-            break
-        }
+        currentPosition += width
+        draw()
     }
+    freeze()
 }
 
 function freeze(){
