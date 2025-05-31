@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let lines = 0
     let score = 0
     let timerId
+    let isGameOver = false
     const colors = [
         'orange',
         'red',
@@ -76,6 +77,7 @@ function undraw(){
 }
 
 function control(e) {
+    if(isGameOver) return
     if(e.keyCode === 37){
         moveLeft()
     } else if (e.keyCode === 38){
@@ -105,6 +107,7 @@ function isAtBottom() {
 }
 
 function moveToBottom() {
+    if(isGameOver) return
     while (!isAtBottom()) {
         undraw()
         currentPosition += width
@@ -121,9 +124,11 @@ function freeze(){
       current = theTetrominoes[random][currentRotation]
       currentPosition = 4
       draw()
-      displayShape()
-      addScore()
-      gameOver()
+      if(!isGameOver) {
+          displayShape()
+          addScore()
+          gameOver()
+      }
   }
 }
 
@@ -205,6 +210,7 @@ const upNextTetrominoes = [
   ]
 
 function displayShape() {
+    if(isGameOver) return
     displaySquares.forEach(square => {
         square.classList.remove('tetromino')
         square.style.backgroundColor = ''
@@ -225,7 +231,7 @@ StartBtn.addEventListener('click', () => {
         nextRandom = Math.floor(Math.random()*theTetrominoes.length)
         displayShape()
     }
-} )
+})
 
 function addScore(){
     for (let i = 0; i < 199; i +=width){
@@ -249,10 +255,10 @@ function addScore(){
 }
 
 function gameOver() {
-    if(current.some(index => squares[currentPosition+ index].classList.contains('taken'))){
+    if(current.some(index => squares[currentPosition + index].classList.contains('taken'))){
+        isGameOver = true
         PointsDisplay.innerHTML = 'end'
         clearInterval(timerId)
-        document.removeEventListener("keyup",control)
     }
 }
 
