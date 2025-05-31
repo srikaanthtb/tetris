@@ -75,8 +75,6 @@ function undraw(){
     })
 }
 
-// timerId = setInterval(moveDown, 1000)
-
 function control(e) {
     if(e.keyCode === 37){
         moveLeft()
@@ -88,7 +86,7 @@ function control(e) {
         moveDown()
     }else if (e.keyCode === 32){
         moveToBottom()
-}
+    }
 }
 document.addEventListener('keyup', control)
 
@@ -99,28 +97,27 @@ function moveDown(){
     freeze()
 }
 
-// function moveToBottom() {
-//     while (isAtBottom()) {
-//         moveDown()
-//     }
-//     freeze();
-// }
-function moveToBottom() {
-    let maxMoves = 10; // Example value. Set this to a reasonable number based on your game's size.
-    while (!isAtBottom() && maxMoves > 0) {
-        moveDown();
-        maxMoves--;
-    }
-    if (maxMoves <= 0) {
-        console.error('moveToBottom reached max number of moves');
-    }
-    freeze();
+function isAtBottom() {
+    return current.some(index => 
+        squares[currentPosition + index + width].classList.contains('taken') || 
+        currentPosition + index + width >= squares.length - width
+    )
 }
 
-function isAtBottom() {
-    // This function should check if moving down again would go past the bottom of the grid
-    // You need to define how you determine the bottom based on your grid implementation.
-    freeze();
+function moveToBottom() {
+    let moved = true
+    while (moved) {
+        undraw()
+        if (!isAtBottom()) {
+            currentPosition += width
+            draw()
+        } else {
+            draw()
+            moved = false
+            freeze()
+            break
+        }
+    }
 }
 
 function freeze(){
