@@ -222,10 +222,6 @@ function displayShape() {
 }
 
 StartBtn.addEventListener('click', () => {
-    if (isGameOver) {
-        resetGame()
-        return
-    }
     if (timerId) {
         clearInterval(timerId)
         timerId = null
@@ -236,31 +232,6 @@ StartBtn.addEventListener('click', () => {
         displayShape()
     }
 })
-
-function resetGame() {
-    isGameOver = false
-    score = 0
-    lines = 0
-    ScoreDisplay.innerHTML = score
-    LinesDisplay.innerHTML = lines
-    PointsDisplay.innerHTML = 'Score:'
-    squares.forEach(square => {
-        square.classList.remove('taken', 'tetromino')
-        square.style.backgroundColor = ''
-    })
-    displaySquares.forEach(square => {
-        square.classList.remove('tetromino')
-        square.style.backgroundColor = ''
-    })
-    currentPosition = 4
-    currentRotation = 0
-    random = Math.floor(Math.random()*theTetrominoes.length)
-    current = theTetrominoes[random][currentRotation]
-    nextRandom = Math.floor(Math.random()*theTetrominoes.length)
-    draw()
-    timerId = setInterval(moveDown, 1000)
-    displayShape()
-}
 
 function addScore(){
     for (let i = 0; i < 199; i +=width){
