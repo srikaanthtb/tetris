@@ -1,6 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+}
+
 .container {
   display: flex;
   justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
 }
 
 .game-options {
@@ -8,96 +26,181 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  gap: 15px;
+}
+
+.game-options h3 {
+  margin: 5px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #64ffda;
+  text-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
 }
 
 .game-options button {
-  background: #e94560;
+  background: linear-gradient(135deg, #e94560 0%, #ff6b7a 100%);
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 12px 24px;
+  border-radius: 8px;
   margin: 5px;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
 }
 
 .game-options button:hover {
-  background: #ff5472;
+  background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(233, 69, 96, 0.4);
 }
 
+.game-options button:active {
+  transform: translateY(0);
+}
+
+/* Main game grid */
 .grid {
   width: 200px;
   height: 400px;
-  display: flex;
-  flex-wrap: wrap;
-  background-color: #0f3460;
-  border: 2px solid #e94560;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+  border: 3px solid #e94560;
+  border-radius: 8px;
+  box-shadow: 
+    0 0 20px rgba(233, 69, 96, 0.3),
+    inset 0 0 20px rgba(15, 52, 96, 0.5);
+  overflow: hidden;
 }
 
 .grid div {
-  height: 20px;
-  width: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 0.5px solid rgba(100, 255, 218, 0.1);
+  transition: all 0.2s ease;
 }
 
-.tetromino {
-  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.5);
+.grid div.tetromino {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    inset 0 0 8px rgba(255, 255, 255, 0.3),
+    0 0 4px rgba(255, 255, 255, 0.2);
 }
 
-.mini-section {
-  margin-left: 50px;
+.grid div.taken {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
 }
 
-#mini-text {
-  margin-top: 0;
-  color: white;
-}
-
-.mini-grid {
-  width: 80px;
-  height: 80px;
-  display: flex;
-  flex-wrap: wrap;
-  background-color: #0f3460;
-  border: 2px solid #e94560;
-}
-
-.mini-grid div {
-  height: 20px;
-  width: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
+/* Hold section */
 .hold-section {
-  margin-right: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #hold-text {
-  margin-top: 0;
-  color: white;
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #64ffda;
+  text-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+  text-align: center;
 }
 
 .hold-grid {
   width: 80px;
   height: 80px;
-  display: flex;
-  flex-wrap: wrap;
-  background-color: #0f3460;
-  border: 2px solid #e94560;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+  border: 2px solid #64ffda;
+  border-radius: 6px;
+  box-shadow: 
+    0 0 15px rgba(100, 255, 218, 0.2),
+    inset 0 0 10px rgba(15, 52, 96, 0.3);
 }
 
 .hold-grid div {
-  height: 20px;
-  width: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 0.5px solid rgba(100, 255, 218, 0.1);
 }
 
-body {
-  background-color: #1a1a2e;
-  margin: 0;
-  min-height: 100vh;
+.hold-grid div.tetromino {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    inset 0 0 6px rgba(255, 255, 255, 0.3),
+    0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+/* Preview section */
+.mini-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+}
+
+#mini-text {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #64ffda;
+  text-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+  text-align: center;
+}
+
+.mini-grid {
+  width: 80px;
+  height: 80px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+  border: 2px solid #64ffda;
+  border-radius: 6px;
+  box-shadow: 
+    0 0 15px rgba(100, 255, 218, 0.2),
+    inset 0 0 10px rgba(15, 52, 96, 0.3);
+}
+
+.mini-grid div {
+  border: 0.5px solid rgba(100, 255, 218, 0.1);
+}
+
+.mini-grid div.tetromino {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    inset 0 0 6px rgba(255, 255, 255, 0.3),
+    0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+/* Score display styling */
+#score, #lines {
+  color: #ff6b7a;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(255, 107, 122, 0.4);
+}
+
+/* Animation for line clearing */
+@keyframes lineClear {
+  0% { background-color: #ffffff; }
+  50% { background-color: #64ffda; }
+  100% { background-color: transparent; }
+}
+
+.line-clear {
+  animation: lineClear 0.5s ease-in-out;
+}
+
+/* Glow effect for active tetromino */
+@keyframes tetrominoGlow {
+  0%, 100% { box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3), 0 0 4px rgba(255, 255, 255, 0.2); }
+  50% { box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.5), 0 0 8px rgba(255, 255, 255, 0.4); }
+}
+
+.tetromino {
+  animation: tetrominoGlow 2s ease-in-out infinite;
 }
